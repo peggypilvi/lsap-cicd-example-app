@@ -25,9 +25,6 @@ pipeline {
         }
         
         stage('Deploy and Verify') {
-            when {
-                branch 'dev'
-            }
             steps {
                 script {
                     // 停止並移除舊的容器（如果存在）
