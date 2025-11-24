@@ -26,4 +26,13 @@ describe("API Endpoints", () => {
     expect(res.statusCode).toEqual(200);
     expect(res.text).toContain("Welcome to the CI/CD Workshop!");
   });
+  it("should return current time in ISO format", async () => {
+    const res = await request(server).get("/time");
+    expect(res.statusCode).toEqual(200);
+    expect(res.body).toHaveProperty("time");
+    
+    const timeString = res.body.time;
+    const dateObj = new Date(timeString);
+    expect(dateObj.toISOString()).toEqual(timeString);
+  });
 });
